@@ -103,3 +103,9 @@
 [submodule "crosstool-NG"]
 	path = crosstool-NG
 	url = https://github.com/jcmvbkbc/crosstool-NG.git
+[submodule "esp8266-firmware"]
+	path = esp8266-firmware
+	url = https://github.com/rnplus/esp8266-firmware
+[submodule "esp-sdk-tools"]
+	path = esp-sdk-tools
+	url = https://github.com/pfalcon/esp-sdk-tools

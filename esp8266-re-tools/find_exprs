@@ -1,0 +1,12 @@
+#!/bin/bash
+
+utildir="$(dirname "$0")"
+
+pattern_file="$1"
+
+while read -r expr; do
+    echo ""
+    echo "== $expr =="
+    echo ""
+    "$utildir"/funcgrep -l "$expr" */*.s | "$utildir"/func2wiki | sort
+done < "$pattern_file"

@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# Usage: unpack <directory-with-lib-files>
+#
+# Will unpack, disassemble, and generate callmaps for all object files in all
+# libraries (.a) in the specified directory, writing results to corresponding
+# subdirectories under the current directory.
+#
+# Note: This assumes the following (from the xtobjdis project) are on your path:
+#   xtobjdis
+#   xtcmjoin
+
+COMBINED_CALLMAP="sdk_libs.callmap"
+
+# Note: we could use xtensa-lx106-elf-ar for this, but the 'ar' format is
+# platform-independent, so any old 'ar' utility should work.
+AR="ar"
+
+libdir="$1"
+
+set -e # Exit on any error
+
+export AR
+
+for lib in "$libdir"/*.a; do
+    echo "Unpacking $lib..."
+    dir=$(basename "$lib" .a)
+    mkdir -p "$dir"
+    # Copy the library temporarily into the destination dir.  Otherwise, we'll
+    # have problems if libdir is a relative path once we cd.
+    cp "$lib" "$dir"
+    (
+        cd "$dir"
+        $AR -x $(basename "$lib")
+        rm $(basename "$lib")
+    )
+    for obj in "$dir"/*.o; do
+        echo "  Disassembling $obj..."
+        objbase="$dir"/$(basename "$obj" .o)
+        xtobjdis --callmap="$objbase.callmap" "$obj" > "$objbase.s"
+    done
+done
+
+echo "Generating $COMBINED_CALLMAP..."
+xtcmjoin */*.callmap > "$COMBINED_CALLMAP"
+
+echo "Done."

@@ -1,0 +1,35 @@
+#!/usr/bin/python3
+
+import sys
+import re
+import argparse
+
+parser = argparse.ArgumentParser(prog='funcgrep', description='Search disassembly files for functions which use text string')
+parser.add_argument('--list', '-l', action='store_true', help="Only list matching functions, not matched lines")
+parser.add_argument('pattern', metavar='PATTERN', help="Regular expression to match")
+parser.add_argument('filenames', metavar='FILE', nargs='+', help="File(s) to search")
+
+args = parser.parse_args()
+
+matchline_re = re.compile("([^#]*)")
+funclabel_re = re.compile("([^. ]+|.Lfunc[^ ]+):")
+p_re = re.compile(args.pattern)
+
+for filename in args.filenames:
+    found_functions = set()
+    current_function = None
+    with open(filename, 'r') as f:
+        for line in f:
+            # Strip off any comments, newlines, and trailing spaces
+            line = line.rstrip('\n')
+            matchline = matchline_re.match(line).group(1).rstrip()
+            m = funclabel_re.match(matchline)
+            if m:
+                current_function = m.group(1)
+            if p_re.search(matchline):
+                if args.list:
+                    if current_function not in found_functions:
+                        print("{}:{}".format(filename, current_function))
+                        found_functions.add(current_function)
+                else:
+                    print("{}:{}: {}".format(filename, current_function, line))

@@ -1,0 +1,47 @@
+#!/usr/bin/python3
+
+# Reads a list of function names on stdin and outputs appropriate
+# wiki-link-names for them (including converting .Lfunc### labels to
+# <segment>+<offset> form, etc) on stdout.
+#
+# NOTE: This script currently assumes that sdk_libs.callmap (produced by the
+# unpack script or something similar) will be in the current directory.
+
+import sys
+import json
+import os
+
+def find_func_info(callmap, filename, func):
+    if filename.endswith('.s'):
+        filename = filename[:-2]
+    if not filename.endswith('.o'):
+        filename += '.o'
+    basename = os.path.basename(filename[:-2])
+    for cm in callmap:
+        if cm['filename'] == filename:
+            for section_name, section_info in cm['functions'].items():
+                func_info = section_info.get(func)
+                if func_info:
+                    return (basename, section_name, func_info['offset'])
+    return None
+
+with open('sdk_libs.callmap', 'r') as f:
+    callmap = json.load(f)
+
+for line in sys.stdin:
+    words = line.strip().split(':')
+    if len(words) != 2:
+        sys.stderr.write('ERROR: Bad input line: {!r}\n'.format(line))
+        continue
+    filename, func = words
+    if not func.startswith('.'):
+        # This is a global function, just print its name
+        print('[[|{}]]'.format(func))
+    else:
+        finfo = find_func_info(callmap, filename, func)
+        if not finfo:
+            sys.stderr.write('WARNING: {}:{} not found in callmap\n'.format(filename, func))
+            print(line)
+        else:
+            print('[[|{}{}+0x{:x}]]'.format(*finfo))
+    

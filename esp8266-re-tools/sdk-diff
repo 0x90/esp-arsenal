@@ -1,0 +1,53 @@
+#!/bin/sh
+#
+# Usage: sdk-diff <libdir1> <libdir2>
+#
+# This script will take two SDK library directory paths and:
+# * Unpack and disassemble all of the object files in all of the directories
+# * Perform some filtering on the disassembled output
+# * Run the results through 'diff' to produce a comparison of the contents of
+#   the two sets of SDK libs, and spit it out to standard output
+#
+# Note: This script assumes the following are on your path:
+#   xtobjdis
+#   ar
+#   diff
+
+# Note: we could use xtensa-lx106-elf-ar for this, but the 'ar' format is
+# platform-independent, so any old 'ar' utility should work.
+AR="ar"
+
+set -e # Exit on any error
+
+export AR
+
+unpack_disassemble() {
+    for lib in "$2"/*.a; do
+        echo "Unpacking $lib..." >&2
+        dir="$1/$(basename "$lib" .a)"
+        mkdir -p "$dir"
+        # Copy the library temporarily into the destination dir.  Otherwise,
+        # we'll have problems if libdir is a relative path once we cd.
+        cp "$lib" "$dir"
+        (
+            cd "$dir"
+            $AR -x $(basename "$lib")
+            rm $(basename "$lib")
+        )
+        for obj in "$dir"/*.o; do
+            objbase="$dir"/$(basename "$obj" .o)
+            echo "  Disassembling to $objbase.s..." >&2
+            xtobjdis --nohex "$obj" | sed -e 's/\([.]L[a-z]*\)[0-9][0-9]*/\1.../g' > "$objbase.s"
+            rm "$obj"
+        done
+    done
+}
+
+mkdir -p 1
+unpack_disassemble 1 "$1"
+mkdir -p 2
+unpack_disassemble 2 "$2"
+
+echo "Executing: diff -ur 1 2" >&2
+diff -ur 1 2
+
