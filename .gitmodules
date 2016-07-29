@@ -1,0 +1,105 @@
+[submodule "esp8266-deauth"]
+	path = esp8266-deauth
+	url = https://github.com/RandDruid/esp8266-deauth
+[submodule "esp8266-deauth2"]
+	path = esp8266-deauth2
+	url = https://github.com/RandDruid/esp8266-deauth2
+[submodule "espism"]
+	path = espism
+	url = https://github.com/kanflo/espism
+[submodule "esp8266-sniffer"]
+	path = esp8266-sniffer
+	url = https://github.com/david-griffith/esp8266-sniffer
+[submodule "esp8266_link_test"]
+	path = esp8266_link_test
+	url = https://github.com/cnlohr/esp8266_link_test
+[submodule "esp8266_wifi_raw"]
+	path = esp8266_wifi_raw
+	url = https://github.com/ernacktob/esp8266_wifi_raw
+[submodule "probesniff"]
+	path = probesniff
+	url = https://github.com/hessch/probesniff
+[submodule "esp8266_wifi_raw2"]
+	path = esp8266_wifi_raw2
+	url = https://github.com/ernacktob/esp8266_wifi_raw
+[submodule "esp-elf-rom"]
+	path = esp-elf-rom
+	url = https://github.com/jcmvbkbc/esp-elf-rom
+[submodule "esp8266rawpackets"]
+	path = esp8266rawpackets
+	url = https://github.com/cnlohr/esp8266rawpackets
+[submodule "esp-gdbstub"]
+	path = esp-gdbstub
+	url = https://github.com/espressif/esp-gdbstub
+[submodule "Arduino"]
+	path = Arduino
+	url = https://github.com/esp8266/Arduino
+[submodule "esp8266-frankenstein"]
+	path = esp8266-frankenstein
+	url = https://github.com/nekromant/esp8266-frankenstein
+[submodule "esp-open-rtos"]
+	path = esp-open-rtos
+	url = https://github.com/SuperHouse/esp-open-rtos
+[submodule "WiFiBeaconJam"]
+	path = WiFiBeaconJam
+	url = https://github.com/kripthor/WiFiBeaconJam
+[submodule "ESP8266wifi"]
+	path = ESP8266wifi
+	url = https://github.com/ekstrand/ESP8266wifi
+[submodule "nodemcu-firmware"]
+	path = nodemcu-firmware
+	url = https://github.com/nodemcu/nodemcu-firmware
+[submodule "esp8266-injection-example"]
+	path = esp8266-injection-example
+	url = https://github.com/pulkin/esp8266-injection-example
+[submodule "espthernet"]
+	path = espthernet
+	url = https://github.com/cnlohr/espthernet
+[submodule "ESP8266_SPI_Driver"]
+	path = ESP8266_SPI_Driver
+	url = https://github.com/MetalPhreak/ESP8266_SPI_Driver
+[submodule "ESP8266_MESH_DEMO"]
+	path = ESP8266_MESH_DEMO
+	url = https://github.com/espressif/ESP8266_MESH_DEMO
+[submodule "esp8266-wiki"]
+	path = esp8266-wiki
+	url = https://github.com/esp8266/esp8266-wiki
+[submodule "esp8266-devkit"]
+	path = esp8266-devkit
+	url = https://github.com/CHERTS/esp8266-devkit
+[submodule "ESP8266-transparent-bridge"]
+	path = ESP8266-transparent-bridge
+	url = https://github.com/beckdac/ESP8266-transparent-bridge
+[submodule "ESPlorer"]
+	path = ESPlorer
+	url = https://github.com/4refr0nt/ESPlorer
+[submodule "channel3"]
+	path = channel3
+	url = https://github.com/cnlohr/channel3
+[submodule "esptool"]
+	path = esptool
+	url = https://github.com/themadinventor/esptool
+[submodule "esp-open-sdk"]
+	path = esp-open-sdk
+	url = https://github.com/pfalcon/esp-open-sdk
+[submodule "mongoose-iot"]
+	path = mongoose-iot
+	url = https://github.com/cesanta/mongoose-iot
+[submodule "esptool2"]
+	path = esptool2
+	url = https://github.com/raburton/esptool2
+[submodule "Sming"]
+	path = Sming
+	url = https://github.com/SmingHub/Sming
+[submodule "esp-link"]
+	path = esp-link
+	url = https://github.com/jeelabs/esp-link
+[submodule "esptool-ck"]
+	path = esptool-ck
+	url = https://github.com/tommie/esptool-ck
+[submodule "esptool.py"]
+	path = esptool.py
+	url = https://github.com/themadinventor/esptool
+[submodule "crosstool-NG"]
+	path = crosstool-NG
+	url = https://github.com/jcmvbkbc/crosstool-NG.git
