@@ -109,3 +109,6 @@
 [submodule "esp-sdk-tools"]
 	path = esp-sdk-tools
 	url = https://github.com/pfalcon/esp-sdk-tools
+[submodule "esp8266_probereq_spammer"]
+	path = esp8266_probereq_spammer
+	url = https://github.com/lbuchy/esp8266_probereq_spammer
