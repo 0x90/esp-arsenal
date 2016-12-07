@@ -115,3 +115,6 @@
 [submodule "espduino-improbinator"]
 	path = espduino-improbinator
 	url = https://github.com/cisene/espduino-improbinator
+[submodule "esp-monitor"]
+	path = esp-monitor
+	url = https://github.com/br101/esp-monitor
