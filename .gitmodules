@@ -118,3 +118,6 @@
 [submodule "esp-monitor"]
 	path = esp-monitor
 	url = https://github.com/br101/esp-monitor
+[submodule "ESPTool"]
+	path = ESPTool
+	url = https://github.com/dangrie158/ESPTool
