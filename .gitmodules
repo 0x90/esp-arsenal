@@ -121,3 +121,9 @@
 [submodule "ESPTool"]
 	path = ESPTool
 	url = https://github.com/dangrie158/ESPTool
+[submodule "esp8266_deauther"]
+	path = esp8266_deauther
+	url = https://github.com/spacehuhn/esp8266_deauther
+[submodule "Wi-PWN"]
+	path = Wi-PWN
+	url = https://github.com/samdenty99/Wi-PWN
